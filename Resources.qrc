@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/img-Icon">
+        <file>imgResources/icon-Calculate.png</file>
+        <file>imgResources/icon-Exit.png</file>
+        <file>imgResources/icon-Guardar.png</file>
+        <file>imgResources/icon-New.png</file>
+        <file>imgResources/icon-Open.png</file>
+        <file>imgResources/icon-Info.png</file>
+        <file>imgResources/icon-Fino.png</file>
+    </qresource>
+</RCC>

@@ -15,6 +15,12 @@ public:
     Salario(QWidget *parent = nullptr);
     ~Salario();
 
+private slots:
+
+
+
+    void on_actionSalir_triggered();
+
 private:
     Ui::Salario *ui;
 };

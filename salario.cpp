@@ -6,10 +6,29 @@ Salario::Salario(QWidget *parent)
     , ui(new Ui::Salario)
 {
     ui->setupUi(this);
+
+
+
 }
 
 Salario::~Salario()
 {
     delete ui;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+void Salario::on_actionSalir_triggered() //Function to exit
+{
+    Salario::close();
 }
 
