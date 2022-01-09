@@ -13,6 +13,16 @@
   <property name="windowTitle">
    <string>Salario</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/imgResources/icon-App.png</normaloff>:/imgResources/icon-App.png</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
@@ -107,14 +117,8 @@
             <property name="text">
              <string>Matutina</string>
             </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
             <property name="checked">
              <bool>true</bool>
-            </property>
-            <property name="autoRepeat">
-             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -264,6 +268,15 @@
    </property>
   </action>
   <action name="actionGuardar">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="Resources.qrc">
      <normaloff>:/img-Icon/imgResources/icon-Guardar.png</normaloff>:/img-Icon/imgResources/icon-Guardar.png</iconset>

@@ -8,4 +8,7 @@
         <file>imgResources/icon-Info.png</file>
         <file>imgResources/icon-Fino.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>imgResources/icon-App.png</file>
+    </qresource>
 </RCC>
