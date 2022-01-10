@@ -23,6 +23,7 @@ public:
 
 
     bool calcularSalario();
+    Obrero *obrero() const;
 
 signals:
 

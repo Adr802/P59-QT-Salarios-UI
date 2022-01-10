@@ -60,4 +60,9 @@ bool Controlador::calcularSalario()
 
 }
 
+Obrero *Controlador::obrero() const
+{
+    return m_obrero;
+}
+
 

@@ -6,6 +6,8 @@ Salario::Salario(QWidget *parent)
     , ui(new Ui::Salario)
 {
     ui->setupUi(this);
+    m_control = new Controlador(); //Instanciar objeto
+
 
     //
     ui->inMatutino->setStatusTip("Jornada de la mañana"); //Set text on statusbar   boton elegir
@@ -32,9 +34,7 @@ void Salario::on_actionSalir_triggered() //Function to exit
 
 void Salario::on_actionCalcular_triggered()
 {
-
-
-    ui->actionGuardar->setEnabled(true);
+    Salario::on_cmdCalcular_clicked();
 }
 
 
@@ -56,6 +56,24 @@ void Salario::on_actionNuevo_triggered()  //Function to clear all program and do
 
 void Salario::on_cmdCalcular_clicked()
 {
-    Salario::on_actionCalcular_triggered();
+    ui->actionGuardar->setEnabled(true);
+    //Obtener datos de la GUI
+    QString nombre = ui->inName->text();
+    int horas = ui->inHour->value();
+    TipoJornada jornada;
+    if(ui->inMatutino->isChecked()){
+        jornada = TipoJornada::Matutina;
+    }else if(ui->inVespertina->isChecked()){
+        jornada = TipoJornada::Vespertina;
+    }else{
+        jornada = TipoJornada::Nocturna;
+    }
+    //Agregar obrero al controlador
+    m_control->agregarObrero(nombre,horas,jornada);
+
+    //Calcular
+    if(m_control->calcularSalario()){
+        ui->outResult->appendPlainText(m_control->obrero()->toString());
+    }
 }
 
