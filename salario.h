@@ -27,9 +27,8 @@ private slots:
     void on_actionNuevo_triggered();
 
 
-    void on_inMatutino_clicked();
-    void on_inVespertina_clicked();
-    void on_inNocturna_clicked();
+
+    void on_cmdCalcular_clicked();
 
 private:
     Ui::Salario *ui;

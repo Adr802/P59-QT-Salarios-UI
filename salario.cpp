@@ -11,6 +11,7 @@ Salario::Salario(QWidget *parent)
     ui->inMatutino->setStatusTip("Jornada de la mañana"); //Set text on statusbar   boton elegir
     ui->inVespertina->setStatusTip("Jornada de la tarde"); //Set text on statusbar  boton elegir
     ui->inNocturna->setStatusTip("Jornada de la noche"); //Set text on statusbar    boton elegir
+
     ui->actionCalcular->setStatusTip("Calcular salario pana"); //Set tex on status bar actionCalcular
 
 
@@ -31,6 +32,8 @@ void Salario::on_actionSalir_triggered() //Function to exit
 
 void Salario::on_actionCalcular_triggered()
 {
+
+
     ui->actionGuardar->setEnabled(true);
 }
 
@@ -47,21 +50,12 @@ void Salario::on_actionNuevo_triggered()  //Function to clear all program and do
     ui->inName->clear();                  //Clear name text
     ui->outResult->clear();               //Clear text field(campo de texto)
     ui->inMatutino->setChecked(true);     //Set focus on matunino again
+    ui->actionGuardar->setEnabled(false); //lock the  button guardar until the user presses "calcular" button
 }
 
 
-void Salario::on_inMatutino_clicked()
+void Salario::on_cmdCalcular_clicked()
 {
-}
-
-
-void Salario::on_inVespertina_clicked()
-{
-}
-
-
-void Salario::on_inNocturna_clicked()
-{
-
+    Salario::on_actionCalcular_triggered();
 }
 
