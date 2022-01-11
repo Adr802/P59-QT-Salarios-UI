@@ -46,7 +46,7 @@ void Salario::on_actionGuardar_triggered()
 
 void Salario::on_actionNuevo_triggered()  //Function to clear all program and do new
 {
-    ui->inHour->clear();                  //Clear number hour
+    ui->inHour->setValue(8);              //Clear number hour
     ui->inName->clear();                  //Clear name text
     ui->outResult->clear();               //Clear text field(campo de texto)
     ui->inMatutino->setChecked(true);     //Set focus on matunino again
@@ -56,24 +56,34 @@ void Salario::on_actionNuevo_triggered()  //Function to clear all program and do
 
 void Salario::on_cmdCalcular_clicked()
 {
-    ui->actionGuardar->setEnabled(true);
-    //Obtener datos de la GUI
-    QString nombre = ui->inName->text();
-    int horas = ui->inHour->value();
-    TipoJornada jornada;
-    if(ui->inMatutino->isChecked()){
-        jornada = TipoJornada::Matutina;
-    }else if(ui->inVespertina->isChecked()){
-        jornada = TipoJornada::Vespertina;
-    }else{
-        jornada = TipoJornada::Nocturna;
-    }
-    //Agregar obrero al controlador
-    m_control->agregarObrero(nombre,horas,jornada);
 
-    //Calcular
-    if(m_control->calcularSalario()){
-        ui->outResult->appendPlainText(m_control->obrero()->toString());
+    if(ui->inName->text() == ""){ //Ver si el campo de texto ha sido modificado (El usuario escribio)
+        QMessageBox::warning(this,"Campo vacio","Ingresa un nombre capo");  //Ventana emergente
+    }else{
+        ui->actionGuardar->setEnabled(true);    //Activar la accion guardar en el menu
+        //Obtener datos de la GUI
+        QString nombre = ui->inName->text();
+        int horas = ui->inHour->value();
+        TipoJornada jornada;
+        if(ui->inMatutino->isChecked()){   //Settear la jornada
+            jornada = TipoJornada::Matutina;
+        }else if(ui->inVespertina->isChecked()){
+            jornada = TipoJornada::Vespertina;
+        }else{
+            jornada = TipoJornada::Nocturna;
+        }
+        //Agregar obrero al controlador
+        m_control->agregarObrero(nombre,horas,jornada);
+
+        //Calcular
+        if(m_control->calcularSalario()){
+            ui->outResult->appendPlainText(m_control->obrero()->toString());
+        }
+
+        //Volver a valores por default
+        ui->inHour->setValue(8);
+        ui->inName->clear();
+        ui->inMatutino->setChecked(true);
     }
 }
 
