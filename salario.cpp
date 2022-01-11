@@ -34,31 +34,45 @@ void Salario::on_actionSalir_triggered() //Function to exit
 
 void Salario::on_actionCalcular_triggered()
 {
-    Salario::on_cmdCalcular_clicked();
+    calcular();
 }
 
 
 void Salario::on_actionGuardar_triggered()
 {
-    qDebug()<<"Active guardar"<<endl;
+    guardar();
 }
 
 
 void Salario::on_actionNuevo_triggered()  //Function to clear all program and do new
 {
-    ui->inHour->setValue(8);              //Clear number hour
-    ui->inName->clear();                  //Clear name text
+    limpiar();                            //Llama a la funcion para volver a valores por default
     ui->outResult->clear();               //Clear text field(campo de texto)
-    ui->inMatutino->setChecked(true);     //Set focus on matunino again
     ui->actionGuardar->setEnabled(false); //lock the  button guardar until the user presses "calcular" button
 }
 
 
 void Salario::on_cmdCalcular_clicked()
 {
+    calcular();
+}
 
-    if(ui->inName->text() == ""){ //Ver si el campo de texto ha sido modificado (El usuario escribio)
-        QMessageBox::warning(this,"Campo vacio","Ingresa un nombre capo");  //Ventana emergente
+void Salario::limpiar()
+{
+    //Volver a valores por default
+    ui->inHour->setValue(0);
+    ui->inName->clear();
+    ui->inName->setFocus();
+    ui->inMatutino->setChecked(true);
+}
+
+void Salario::calcular()
+{
+    if(ui->inName->text() == "" || ui->inHour->value() == 0){ //Ver si el campo de texto ha sido modificado (El usuario escribio)
+
+        QMessageBox::warning(this,"Advertencia","Campos vacios u horas 0 \nIntente de nuevo");  //Ventana emergente
+        limpiar();
+
     }else{
         ui->actionGuardar->setEnabled(true);    //Activar la accion guardar en el menu
         //Obtener datos de la GUI
@@ -77,13 +91,41 @@ void Salario::on_cmdCalcular_clicked()
 
         //Calcular
         if(m_control->calcularSalario()){
+            //Muestra los calculos del obrero
             ui->outResult->appendPlainText(m_control->obrero()->toString());
+            //Mensaje si todo va bien
+            ui->statusbar->showMessage("Calculos procesados correctamente para " + nombre, 5000);
+            limpiar(); //Limpiar interfaz
         }
-
-        //Volver a valores por default
-        ui->inHour->setValue(8);
-        ui->inName->clear();
-        ui->inMatutino->setChecked(true);
     }
 }
 
+void Salario::guardar()
+{
+    //Abrir cuadro de dialogo para seleccionar ubicacion y nombre del archivo
+    QString nombreArchivo = QFileDialog::getSaveFileName(this,
+                                                         "Guardar datos",
+                                                         QDir::home().absolutePath(),
+                                                         "Archivos de texto (*.txt");
+
+    //Crear un objeto QFile
+    QFile archivo(nombreArchivo);
+
+    //Abrirlo para escritura
+    if(archivo.open(QFile::WriteOnly | QFile::Truncate)){
+        //Crear un stream de texto
+        QTextStream salida(&archivo);
+        //Enviar los datos del resultado
+        salida << ui->outResult->toPlainText();
+        //Mostar que todo fue bien
+        ui->statusbar->showMessage("Datos almacenados en " + nombreArchivo, 5000);
+    }else{
+        //Mensaje si no se pudo guardar
+        QMessageBox::warning(this,
+                             "Guardar datos",
+                             "No se pudo guardar los datos");
+    }
+
+    //Cerrar archivo
+    archivo.close();
+}

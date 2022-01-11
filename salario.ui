@@ -10,6 +10,15 @@
     <height>471</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <italic>false</italic>
+    <bold>false</bold>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Salario</string>
   </property>
@@ -47,7 +56,10 @@
            <family>Segoe UI Black</family>
            <pointsize>15</pointsize>
            <weight>75</weight>
+           <italic>false</italic>
            <bold>true</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
           </font>
          </property>
          <property name="text">
@@ -160,8 +172,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="cmdCalcular">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="text">
-             <string>Calcular</string>
+             <string>&amp;Calcular</string>
             </property>
            </widget>
           </item>
@@ -193,7 +208,7 @@
           <bool>true</bool>
          </property>
          <property name="placeholderText">
-          <string>Aqui se mostraran los calculos de los salarios :)</string>
+          <string>Aqui se mostraran los calculos de los salarios</string>
          </property>
         </widget>
        </item>
@@ -213,7 +228,7 @@
    </property>
    <widget class="QMenu" name="menuArchivo">
     <property name="title">
-     <string>Archivo</string>
+     <string>&amp;Archivo</string>
     </property>
     <addaction name="actionNuevo"/>
     <addaction name="actionAbrir"/>
@@ -225,7 +240,7 @@
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
-     <string>Ayuda</string>
+     <string>Ay&amp;uda</string>
     </property>
     <addaction name="actionAcerca_de_salarios"/>
     <addaction name="actionFino_se_ores"/>
@@ -243,7 +258,7 @@
      <normaloff>:/img-Icon/imgResources/icon-New.png</normaloff>:/img-Icon/imgResources/icon-New.png</iconset>
    </property>
    <property name="text">
-    <string>Nuevo</string>
+    <string>&amp;Nuevo</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -261,7 +276,7 @@
      <normaloff>:/img-Icon/imgResources/icon-Open.png</normaloff>:/img-Icon/imgResources/icon-Open.png</iconset>
    </property>
    <property name="text">
-    <string>Abrir </string>
+    <string>&amp;Abrir </string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -282,7 +297,7 @@
      <normaloff>:/img-Icon/imgResources/icon-Guardar.png</normaloff>:/img-Icon/imgResources/icon-Guardar.png</iconset>
    </property>
    <property name="text">
-    <string>Guardar</string>
+    <string>&amp;Guardar</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -294,7 +309,7 @@
      <normaloff>:/img-Icon/imgResources/icon-Info.png</normaloff>:/img-Icon/imgResources/icon-Info.png</iconset>
    </property>
    <property name="text">
-    <string>Acerca de salarios</string>
+    <string>&amp;Acerca de salarios</string>
    </property>
   </action>
   <action name="actionCalcular">
@@ -303,7 +318,7 @@
      <normaloff>:/img-Icon/imgResources/icon-Calculate.png</normaloff>:/img-Icon/imgResources/icon-Calculate.png</iconset>
    </property>
    <property name="text">
-    <string>Calcular</string>
+    <string>&amp;Calcular</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -315,7 +330,7 @@
      <normaloff>:/img-Icon/imgResources/icon-Exit.png</normaloff>:/img-Icon/imgResources/icon-Exit.png</iconset>
    </property>
    <property name="text">
-    <string>Salir</string>
+    <string>&amp;Salir</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -327,7 +342,7 @@
      <normaloff>:/img-Icon/imgResources/icon-Fino.png</normaloff>:/img-Icon/imgResources/icon-Fino.png</iconset>
    </property>
    <property name="text">
-    <string>Fino señores</string>
+    <string>&amp;Fino señores</string>
    </property>
   </action>
  </widget>

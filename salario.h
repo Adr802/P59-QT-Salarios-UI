@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include <QMessageBox>
-
+#include <QFileDialog>
 
 #include "controlador.h"
 
@@ -35,7 +35,11 @@ private slots:
 
 private:
     Ui::Salario *ui;
-
     Controlador *m_control;
+
+    void limpiar();
+    void calcular();
+    void guardar();
+
 };
 #endif // SALARIO_H
