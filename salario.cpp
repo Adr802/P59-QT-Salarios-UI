@@ -168,3 +168,16 @@ void Salario::on_actionAbrir_triggered()
 {
     abrir();
 }
+
+void Salario::on_actionAcerca_de_salarios_triggered()
+{
+    //Crear objeto de la ventana a crear
+    Acerca *cuadro = new Acerca(this);
+
+    //Enviar parametro a la ventana
+    cuadro->setVersion(VERSION);
+
+    //ejecuta el cuadro en modo modal (mientras no se cierre la ventana no continua el codigo)
+    cuadro->exec();
+}
+
