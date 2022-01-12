@@ -16,7 +16,6 @@ Salario::Salario(QWidget *parent)
 
     ui->actionCalcular->setStatusTip("Calcular salario pana"); //Set tex on status bar actionCalcular
 
-
 }
 
 Salario::~Salario()
@@ -104,9 +103,9 @@ void Salario::guardar()
 {
     //Abrir cuadro de dialogo para seleccionar ubicacion y nombre del archivo
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
-                                                         "Guardar datos",
+                                                         "Guardar archivo",
                                                          QDir::home().absolutePath(),
-                                                         "Archivos de texto (*.txt");
+                                                         "Archivos slr (*.slr");
 
     //Crear un objeto QFile
     QFile archivo(nombreArchivo);
@@ -123,9 +122,49 @@ void Salario::guardar()
         //Mensaje si no se pudo guardar
         QMessageBox::warning(this,
                              "Guardar datos",
-                             "No se pudo guardar los datos");
+                             "No se pudo guardar el archivo");
     }
 
     //Cerrar archivo
     archivo.close();
+}
+
+void Salario::abrir()
+{
+    //Abrir cuadro de dialogo para seleccionar ubicacion y nombre del archivo
+    QString nombreArchivo = QFileDialog::getOpenFileName(this,
+                                                         "Abrir archivo",
+                                                         QDir::home().absolutePath(),
+                                                         "Archivos slr (*.slr");
+
+    //Crear un objeto QFile
+    QFile archivo(nombreArchivo);
+
+    //Abrirlo para lectura
+    if(archivo.open(QFile::ReadOnly)){
+        //Crear un stream de texto
+        QTextStream entrada(&archivo);
+        //Leer los datos del resultado
+        QString datos = entrada.readAll();
+
+        //Asignar datos al out
+        ui->outResult->clear();
+        ui->outResult->setPlainText(datos);
+
+        //Mostar que todo fue bien
+        ui->statusbar->showMessage("Datos leidos desde " + nombreArchivo, 5000);
+    }else{
+        //Mensaje si no se pudo abrir
+        QMessageBox::warning(this,
+                             "Abrir datos",
+                             "No se pudo abrir el archivo");
+    }
+
+    //Cerrar archivo
+    archivo.close();
+}
+
+void Salario::on_actionAbrir_triggered()
+{
+    abrir();
 }

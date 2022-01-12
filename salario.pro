@@ -9,17 +9,20 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    acerca.cpp \
     controlador.cpp \
     main.cpp \
     obrero.cpp \
     salario.cpp
 
 HEADERS += \
+    acerca.h \
     controlador.h \
     obrero.h \
     salario.h
 
 FORMS += \
+    acerca.ui \
     salario.ui
 
 # Default rules for deployment.
@@ -29,3 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Resources.qrc
+
+DISTFILES +=

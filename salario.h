@@ -33,6 +33,8 @@ private slots:
 
     void on_cmdCalcular_clicked();
 
+    void on_actionAbrir_triggered();
+
 private:
     Ui::Salario *ui;
     Controlador *m_control;
@@ -40,6 +42,7 @@ private:
     void limpiar();
     void calcular();
     void guardar();
+    void abrir();
 
 };
 #endif // SALARIO_H
