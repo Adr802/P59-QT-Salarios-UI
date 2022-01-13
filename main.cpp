@@ -5,6 +5,10 @@
 #include <QApplication>
 #include <QDebug>
 
+float Salario::sBruto = 0;
+float Salario::sIESS = 0;
+float Salario::sNeto = 0;
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

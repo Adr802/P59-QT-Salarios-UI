@@ -25,10 +25,15 @@ public:
     bool calcularSalario();
     Obrero *obrero() const;
 
+    double returnSBRUTO();
+    double returnSNETO();
+    double returnSIESS();
+
 signals:
 
 private:
     Obrero *m_obrero;
+
 
 
 };

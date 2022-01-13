@@ -23,6 +23,10 @@ public:
     Salario(QWidget *parent = nullptr);
     ~Salario();
 
+    static float sIESS;
+    static float sBruto;
+    static float sNeto;
+
 private slots:
 
 
@@ -39,6 +43,9 @@ private slots:
     void on_actionAbrir_triggered();
 
     void on_actionAcerca_de_salarios_triggered();
+
+
+
 
 private:
     Ui::Salario *ui;

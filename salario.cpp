@@ -48,6 +48,9 @@ void Salario::on_actionNuevo_triggered()  //Function to clear all program and do
     limpiar();                            //Llama a la funcion para volver a valores por default
     ui->outResult->clear();               //Clear text field(campo de texto)
     ui->actionGuardar->setEnabled(false); //lock the  button guardar until the user presses "calcular" button
+    ui->outBruto->clear();
+    ui->outIESS->clear();
+    ui->outNeto->clear();
 }
 
 
@@ -96,6 +99,19 @@ void Salario::calcular()
             ui->statusbar->showMessage("Calculos procesados correctamente para " + nombre, 5000);
             limpiar(); //Limpiar interfaz
         }
+
+
+    //Calcular valores totales
+    sBruto += m_control->returnSBRUTO();
+    sNeto += m_control->returnSNETO();
+    sIESS += m_control->returnSIESS();
+
+    //Mostrar en pantalla
+                           //Variable a transformar - ? - 2 decimales
+    ui->outBruto->setText(QString::number(sBruto,'f',2));
+    ui->outIESS->setText(QString::number(sIESS,'f',2));
+    ui->outNeto->setText(QString::number(sNeto,'f',2));
+
     }
 }
 
@@ -116,6 +132,15 @@ void Salario::guardar()
         QTextStream salida(&archivo);
         //Enviar los datos del resultado
         salida << ui->outResult->toPlainText();
+        //Agregar separador
+        salida.operator<<("\n------------\n");
+
+        //Agregar totales al archivo
+        salida.operator<<("\nTotales:");
+        salida.operator<<("\nS.Bruto: $" + QString::number(sBruto,'f',2));
+        salida.operator<<("\nIESS: $" + QString::number(sIESS,'f',2));
+        salida.operator<<("\nS.Neto: $" + QString::number(sNeto,'f',2));
+
         //Mostar que todo fue bien
         ui->statusbar->showMessage("Datos almacenados en " + nombreArchivo, 5000);
     }else{
@@ -145,6 +170,7 @@ void Salario::abrir()
         //Crear un stream de texto
         QTextStream entrada(&archivo);
         //Leer los datos del resultado
+        int i=0;
         QString datos = entrada.readAll();
 
         //Asignar datos al out

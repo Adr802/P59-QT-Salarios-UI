@@ -65,4 +65,21 @@ Obrero *Controlador::obrero() const
     return m_obrero;
 }
 
+double Controlador::returnSBRUTO()
+{
+    return m_obrero->salarioBruto();
+}
+
+double Controlador::returnSNETO()
+{
+    return m_obrero->salarioNeto();
+
+}
+
+double Controlador::returnSIESS()
+{
+    return m_obrero->descuento();
+
+}
+
 
