@@ -101,16 +101,16 @@ void Salario::calcular()
         }
 
 
-    //Calcular valores totales
-    sBruto += m_control->returnSBRUTO();
-    sNeto += m_control->returnSNETO();
-    sIESS += m_control->returnSIESS();
+        //Calcular valores totales
+        sBruto += m_control->returnSBRUTO();
+        sNeto += m_control->returnSNETO();
+        sIESS += m_control->returnSIESS();
 
-    //Mostrar en pantalla
-                           //Variable a transformar - ? - 2 decimales
-    ui->outBruto->setText(QString::number(sBruto,'f',2));
-    ui->outIESS->setText(QString::number(sIESS,'f',2));
-    ui->outNeto->setText(QString::number(sNeto,'f',2));
+        //Mostrar en pantalla
+        //Variable a transformar - ? - 2 decimales
+        ui->outBruto->setText(QString::number(sBruto,'f',2));
+        ui->outIESS->setText(QString::number(sIESS,'f',2));
+        ui->outNeto->setText(QString::number(sNeto,'f',2));
 
     }
 }
@@ -118,10 +118,8 @@ void Salario::calcular()
 void Salario::guardar()
 {
     //Abrir cuadro de dialogo para seleccionar ubicacion y nombre del archivo
-    QString nombreArchivo = QFileDialog::getSaveFileName(this,
-                                                         "Guardar archivo",
-                                                         QDir::home().absolutePath(),
-                                                         "Archivos slr (*.slr");
+    QString nombreArchivo = QFileDialog::getSaveFileName(this,tr ("Guardar archivo"), "", tr ("Archivos slr (*.slr"));
+
 
     //Crear un objeto QFile
     QFile archivo(nombreArchivo);
@@ -166,19 +164,52 @@ void Salario::abrir()
     QFile archivo(nombreArchivo);
 
     //Abrirlo para lectura
-    if(archivo.open(QFile::ReadOnly)){
+   if(archivo.open(QFile::ReadOnly)){
         //Crear un stream de texto
         QTextStream entrada(&archivo);
         //Leer los datos del resultado
-        int i=0;
-        QString datos = entrada.readAll();
+        QString datos="";
+        QString linea="";
+
+        while(!entrada.atEnd() && linea != "------------"){
+            linea = entrada.readLine();
+            if(linea == "------------"){
+                break;
+            }
+            datos += linea + "\n";
+        }
 
         //Asignar datos al out
-        ui->outResult->clear();
+
         ui->outResult->setPlainText(datos);
+
+        linea = entrada.readLine();
+        linea = entrada.readLine();
+
+
+        //Asignar datos totales al out y a las variables
+        //Salrio bruto
+        datos = entrada.readLine().remove(0,9);
+        ui->outBruto->setText(datos);
+        Salario::sBruto = datos.toFloat();
+
+        //Salario iess
+        datos = entrada.readLine().remove(0,6);
+        ui->outIESS->setText(datos);
+        Salario::sIESS = datos.toFloat();
+
+        //Salary neto
+        datos = entrada.readLine().remove(0,8);
+        ui->outNeto->setText(datos);
+        Salario::sNeto = datos.toFloat();
+
+
+
 
         //Mostar que todo fue bien
         ui->statusbar->showMessage("Datos leidos desde " + nombreArchivo, 5000);
+        ui->actionGuardar->setEnabled(true); //Enable the button save
+
     }else{
         //Mensaje si no se pudo abrir
         QMessageBox::warning(this,
@@ -189,6 +220,7 @@ void Salario::abrir()
     //Cerrar archivo
     archivo.close();
 }
+
 
 void Salario::on_actionAbrir_triggered()
 {
