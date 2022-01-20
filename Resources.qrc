@@ -11,5 +11,8 @@
     <qresource prefix="/">
         <file>imgResources/icon-App.png</file>
         <file>imgResources/button.png</file>
+        <file>imgResources/btn hover.png</file>
+        <file>imgResources/btn normal.png</file>
+        <file>imgResources/btn pressed.png</file>
     </qresource>
 </RCC>

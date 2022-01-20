@@ -172,8 +172,14 @@
            <widget class="QPushButton" name="cmdCalcular">
             <property name="minimumSize">
              <size>
-              <width>87</width>
-              <height>69</height>
+              <width>95</width>
+              <height>33</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777211</height>
              </size>
             </property>
             <property name="sizeIncrement">
@@ -181,6 +187,17 @@
               <width>0</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Formula1</family>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
             </property>
             <property name="mouseTracking">
              <bool>false</bool>
@@ -194,13 +211,17 @@
             <property name="styleSheet">
              <string notr="true">#cmdCalcular{
 background-color:transparent;
-	border-image: url(:/imgResources/button.png);
+border-image: url(:/imgResources/btn normal.png);
 background: none;
 border:none;
-background-repeat:none
+background-repeat:none;
+color: rgb(255, 255, 255);
+}
+#cmdCalcular:hover{
+	border-image: url(:/imgResources/btn hover.png);
 }
 #cmdCalcular:pressed{
-	border-image: url(:/img-Icon/imgResources/icon-Calculate.png);
+	border-image: url(:/imgResources/btn pressed.png);
 }</string>
             </property>
             <property name="text">
@@ -412,7 +433,6 @@ background-repeat:none
      <string>Ay&amp;uda</string>
     </property>
     <addaction name="actionAcerca_de_salarios"/>
-    <addaction name="actionFino_se_ores"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuAyuda"/>
@@ -503,15 +523,6 @@ background-repeat:none
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
-   </property>
-  </action>
-  <action name="actionFino_se_ores">
-   <property name="icon">
-    <iconset resource="Resources.qrc">
-     <normaloff>:/img-Icon/imgResources/icon-Fino.png</normaloff>:/img-Icon/imgResources/icon-Fino.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Fino señores</string>
    </property>
   </action>
  </widget>
